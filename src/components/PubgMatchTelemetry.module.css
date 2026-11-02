@@ -1,0 +1,48 @@
+.telemetry {
+  min-width: 0;
+}
+
+.skeleton,
+.matchCard {
+  box-sizing: border-box;
+  min-height: 220px;
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid #dbe3ee;
+  border-radius: 0.75rem;
+}
+
+.skeleton {
+  display: grid;
+  align-content: center;
+  gap: 0.75rem;
+  background: #eef2f7;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.skeletonLine {
+  height: 0.9rem;
+  max-width: 70%;
+  background: #d8e0eb;
+  border-radius: 999px;
+}
+
+.skeletonLine:last-child {
+  max-width: 45%;
+}
+
+.matchCard {
+  overflow-wrap: anywhere;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}

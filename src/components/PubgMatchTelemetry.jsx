@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchKraftonPubgTelemetry } from './pubgTelemetryApi.js';
+import styles from './PubgMatchTelemetry.module.css';
 
 const SQUADS = [
   { id: 'ces', name: 'Cerberus Esports' },
@@ -27,7 +28,7 @@ export function PubgMatchTelemetry() {
   }, [squadId, retryTick]);
 
   return (
-    <section aria-label="PUBG Vietnam match telemetry">
+    <section className={styles.telemetry} aria-label="PUBG Vietnam match telemetry">
       <nav aria-label="Select PUBG squad">
         {SQUADS.map((squad) => (
           <button
@@ -42,7 +43,13 @@ export function PubgMatchTelemetry() {
       </nav>
 
       {view.status === 'IDLE' && <p>Select a squad to load telemetry.</p>}
-      {view.status === 'LOADING' && <p aria-busy="true">Syncing match telemetry…</p>}
+      {view.status === 'LOADING' && (
+        <section className={styles.skeleton} aria-busy="true" aria-label="Loading match telemetry">
+          <span className={styles.skeletonLine} />
+          <span className={styles.skeletonLine} />
+          <span className={styles.skeletonLine} />
+        </section>
+      )}
       {view.status === 'ERROR' && (
         <section role="alert">
           <p>Telemetry unavailable: {view.error}</p>
@@ -52,7 +59,7 @@ export function PubgMatchTelemetry() {
         </section>
       )}
       {view.status === 'SUCCESS' && (
-        <article aria-live="polite">
+        <article className={styles.matchCard} aria-live="polite">
           <h3>{view.data.name}</h3>
           <p>{view.data.map} · {view.data.phase}</p>
           <p>{view.data.alive} alive · {view.data.kills} kills</p>
