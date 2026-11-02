@@ -1,5 +1,12 @@
 import { useState } from 'react';
 
+const ALLOWED_TRANSITIONS = {
+  STRANGERS: ['DATING_NO_LOVE', 'SELF_RESPECT_EXIT'],
+  DATING_NO_LOVE: ['COMMITTED', 'SELF_RESPECT_EXIT'],
+  COMMITTED: ['SELF_RESPECT_EXIT'],
+  SELF_RESPECT_EXIT: [],
+};
+
 export function calculateEffortScore(signals, actor) {
   return signals
     .filter((signal) => signal.actor === actor)
@@ -8,8 +15,13 @@ export function calculateEffortScore(signals, actor) {
 
 export function SituationshipAnalyzer() {
   const [signals, setSignals] = useState([]);
+  const [phase, setPhase] = useState('DATING_NO_LOVE');
   const myScore = calculateEffortScore(signals, 'ME');
   const theirScore = calculateEffortScore(signals, 'THEM');
+
+  const transitionTo = (nextPhase) => {
+    if (ALLOWED_TRANSITIONS[phase].includes(nextPhase)) setPhase(nextPhase);
+  };
 
   const addSignal = (actor, steps, multiplier) => {
     const signal = {
@@ -24,10 +36,32 @@ export function SituationshipAnalyzer() {
   return (
     <section aria-label="Situationship effort analyzer">
       <h2>Effort signals</h2>
-      <button type="button" onClick={() => addSignal('ME', 100, 0.1)}>
+      <p>Phase: {phase}</p>
+      {phase === 'STRANGERS' && (
+        <button type="button" onClick={() => transitionTo('DATING_NO_LOVE')}>
+          Start dating
+        </button>
+      )}
+      {phase === 'DATING_NO_LOVE' && (
+        <>
+          <button type="button" onClick={() => transitionTo('COMMITTED')}>
+            Commit
+          </button>
+          <button type="button" onClick={() => transitionTo('SELF_RESPECT_EXIT')}>
+            End situationship
+          </button>
+        </>
+      )}
+      {phase === 'COMMITTED' && (
+        <button type="button" onClick={() => transitionTo('SELF_RESPECT_EXIT')}>
+          End relationship
+        </button>
+      )}
+      {phase === 'SELF_RESPECT_EXIT' && <p>Exit phase reached.</p>}
+      <button type="button" disabled={phase === 'SELF_RESPECT_EXIT'} onClick={() => addSignal('ME', 100, 0.1)}>
         Log my effort
       </button>
-      <button type="button" onClick={() => addSignal('THEM', 1, 50)}>
+      <button type="button" disabled={phase === 'SELF_RESPECT_EXIT'} onClick={() => addSignal('THEM', 1, 50)}>
         Log their effort
       </button>
       <p>My score: {myScore}</p>
