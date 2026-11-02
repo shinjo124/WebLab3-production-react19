@@ -1,4 +1,5 @@
 import { useId, useState } from 'react';
+import styles from './ScientistDirectory.module.css';
 
 export const SMART_PEOPLE = [
   { id: 'sp-1', name: 'Johann Goethe', age: 82, iq: 210 },
@@ -32,8 +33,8 @@ export function ScientistDirectory() {
   };
 
   return (
-    <section aria-label="Pioneer Directory">
-      <form role="search" onSubmit={(event) => event.preventDefault()}>
+    <section className={styles.directory} aria-label="Pioneer Directory">
+      <form className={styles.form} role="search" onSubmit={(event) => event.preventDefault()}>
         <label htmlFor={searchId}>Search by name</label>
         <input
           id={searchId}
@@ -60,13 +61,15 @@ export function ScientistDirectory() {
         </select>
       </form>
 
-      <button type="button" onClick={() => setPeople(SMART_PEOPLE)}>Reset</button>
-      <output role="status" aria-live="polite">Found {visiblePeople.length} people</output>
-      <ul>
+      <div className={styles.actions}>
+        <button className={styles.button} type="button" onClick={() => setPeople(SMART_PEOPLE)}>Reset</button>
+      <output className={styles.count} role="status" aria-live="polite">Found {visiblePeople.length} people</output>
+      </div>
+      <ul className={styles.list}>
         {visiblePeople.map((person) => (
-          <li key={person.id}>
+          <li className={styles.person} key={person.id}>
             {person.name} — Age {person.age}, IQ {person.iq}{' '}
-            <button type="button" onClick={() => handleDelete(person.id)}>
+            <button className={styles.button} type="button" onClick={() => handleDelete(person.id)}>
               Delete {person.name}
             </button>
           </li>
