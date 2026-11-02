@@ -4,4 +4,9 @@ import { App } from './App.jsx';
 
 const rootEl = document.getElementById('root');
 if (!rootEl) throw new Error('Missing #root');
-createRoot(rootEl).render(<StrictMode><App /></StrictMode>);
+
+createRoot(rootEl).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+);
