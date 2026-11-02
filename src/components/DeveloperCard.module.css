@@ -1,0 +1,104 @@
+.card {
+  --card-bg: #fff;
+  --card-border: #dbe3ee;
+  --card-text: #172033;
+  --card-muted: #526078;
+  --card-accent: #2457a7;
+
+  box-sizing: border-box;
+  width: min(100%, 42rem);
+  min-width: 0;
+  margin-inline: auto;
+  padding: clamp(1rem, 4vw, 1.5rem);
+  color: var(--card-text);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.avatar {
+  flex: 0 0 4rem;
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.initials {
+  display: grid;
+  flex: 0 0 4rem;
+  width: 4rem;
+  height: 4rem;
+  place-items: center;
+  color: #fff;
+  background: var(--card-accent);
+  border-radius: 50%;
+}
+
+.identity {
+  min-width: 0;
+}
+
+.identity h2,
+.identity p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.identity p {
+  margin-top: 0.25rem;
+  color: var(--card-muted);
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  gap: 0.5rem 1rem;
+  margin: 1.5rem 0;
+}
+
+.metrics dt {
+  color: var(--card-muted);
+  font-size: 0.875rem;
+}
+
+.metrics dd {
+  min-width: 0;
+  margin: 0;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skill {
+  min-width: 0;
+  padding: 0.4rem 0.65rem;
+  color: var(--card-accent);
+  background: #edf3ff;
+  border-radius: 999px;
+  overflow-wrap: anywhere;
+}
+
+.skillLevel {
+  color: var(--card-muted);
+}
+.skill span {
+  color: var(--card-muted);
+}
+
