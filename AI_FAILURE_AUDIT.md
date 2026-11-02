@@ -8,7 +8,7 @@
 - **Detection:** At a 375px browser viewport, Playwright measured the skeleton at 220px and the result card at 229.4375px.
 - **Fix:** Reduced the result card heading and paragraph margins so its minimum height stays 220px.
 - **Verification:** Both measured 220px after the fix; viewport and document widths were both 375px. See `lab3-mobile-375-success.png` in the task outputs.
-- **Fix commit:** This audit follow-up
+- **Fix commit:** `1046ca2`
 
 ## Bug 02: Telemetry entered loading from inside the effect
 

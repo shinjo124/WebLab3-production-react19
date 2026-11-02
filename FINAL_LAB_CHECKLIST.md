@@ -13,18 +13,19 @@
 - [x] Exercise 3: 375px browser check, no horizontal overflow, no console errors.
 - [ ] Exercise 3: verify in DevTools with Slow 3G throttling.
 
-## Homeworks and bonus
+## Homework folders
 
-- [ ] HW1 implementation: folder and starter files are scaffolded; behavior remains to be implemented.
-- [ ] HW2 implementation: folder and starter files are scaffolded; piano and audio behavior remain to be implemented.
-- [ ] HW3 implementation: folder and starter files are scaffolded; arena behavior remains to be implemented.
-- [x] Bonus: four-phase state machine, immutable signal log, derived scores/red flag, and cleaned-up five-second timer.
+- [x] HW1, HW2, and HW3 folder/file scaffolds exist.
+- [ ] Homework behavior is not implemented; do not treat scaffold files as completed assignments.
+
+## Bonus
+
+- [x] Four-phase state machine, immutable signal log, derived scores/red flag, and cleaned-up five-second timer.
 
 ## Submission and defense
 
-- [x] `project-rules.md` and `TASK_DECOMPOSITION.md`.
-- [x] Three AI-generated bugs documented with detection, fixes and verification in `AI_FAILURE_AUDIT.md`.
-- [x] At least 6–8 atomic Git commits exist.
+- [x] `project-rules.md`, `TASK_DECOMPOSITION.md`, and `AI_FAILURE_AUDIT.md`.
+- [x] Three AI-generated bugs documented with detection, fixes, and verification.
 - [ ] Complete the 3-minute live refactoring defense with AI tools closed.
 - [x] Production build and lint pass.
 - [ ] Complete remaining DevTools slow-network and accessibility verification.
