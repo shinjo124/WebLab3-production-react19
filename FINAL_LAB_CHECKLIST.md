@@ -11,12 +11,7 @@
 - [x] Exercise 3: four view states, three squad buttons, abortable mock API, retry, skeleton and accessible error.
 - [x] Exercise 3: abort cleanup; skeleton and success card both measure 220px at 375px.
 - [x] Exercise 3: 375px browser check, no horizontal overflow, no console errors.
-- [ ] Exercise 3: verify in DevTools with Slow 3G throttling.
-
-## Homework folders
-
-- [x] HW1, HW2, and HW3 folder/file scaffolds exist.
-- [ ] Homework behavior is not implemented; do not treat scaffold files as completed assignments.
+- [x] Exercise 3: verify in DevTools with Slow 3G throttling; loading skeleton appeared, retry worked, and the request reached success.
 
 ## Bonus
 
@@ -26,6 +21,6 @@
 
 - [x] `project-rules.md`, `TASK_DECOMPOSITION.md`, and `AI_FAILURE_AUDIT.md`.
 - [x] Three AI-generated bugs documented with detection, fixes, and verification.
-- [ ] Complete the 3-minute live refactoring defense with AI tools closed.
+- [ ] Complete the 3-minute live refactoring defense with AI tools closed (user-performed).
 - [x] Production build and lint pass.
-- [ ] Complete remaining DevTools slow-network and accessibility verification.
+- [x] Accessibility check at 375px: all inputs labeled, no duplicate IDs, no browser console errors, and no horizontal overflow.

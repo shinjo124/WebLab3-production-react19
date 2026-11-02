@@ -34,5 +34,6 @@ The homework folders and starter files are scaffolded. Their assignment behavior
 - [x] 375px browser check: viewport/document widths match; all inputs labeled; no duplicate IDs or browser errors.
 - [x] Verify telemetry loading and success card heights match at 220px.
 - [x] Record three AI-generated defects, fixes, and evidence in `AI_FAILURE_AUDIT.md`.
-- [ ] Verify telemetry under DevTools Slow 3G.
-- [ ] Complete the 3-minute live defense with AI tools closed.
+- [x] Verify telemetry under DevTools Slow 3G at 375px: skeleton appears, retry works, request reaches success, and no console errors occur.
+- [x] Accessibility/responsive check at 375px: all inputs labeled, no duplicate IDs, and no horizontal overflow.
+- [ ] User completes the 3-minute live defense with AI tools closed.
