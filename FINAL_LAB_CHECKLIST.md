@@ -15,9 +15,9 @@
 
 ## Homeworks and bonus
 
-- [x] HW1: keyboard handling with `e.code`, repeat/focus guards, cleanup, sound pads and live hit log.
-- [x] HW2: generated 88 keys, memoized keys, eight-voice FIFO synth, recording, variable-speed replay and cancellation.
-- [x] HW3: anti-drift timer with visibility resync, optimistic stock claim with 409 rollback, VND price and filtered leaderboard.
+- [ ] HW1 implementation: folder and starter files are scaffolded; behavior remains to be implemented.
+- [ ] HW2 implementation: folder and starter files are scaffolded; piano and audio behavior remain to be implemented.
+- [ ] HW3 implementation: folder and starter files are scaffolded; arena behavior remains to be implemented.
 - [x] Bonus: four-phase state machine, immutable signal log, derived scores/red flag, and cleaned-up five-second timer.
 
 ## Submission and defense
