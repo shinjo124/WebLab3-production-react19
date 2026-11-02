@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const ALLOWED_TRANSITIONS = {
   STRANGERS: ['DATING_NO_LOVE', 'SELF_RESPECT_EXIT'],
@@ -18,6 +18,14 @@ export function SituationshipAnalyzer() {
   const [phase, setPhase] = useState('DATING_NO_LOVE');
   const myScore = calculateEffortScore(signals, 'ME');
   const theirScore = calculateEffortScore(signals, 'THEM');
+  const isRedFlag = phase === 'DATING_NO_LOVE' && myScore < theirScore;
+
+  useEffect(() => {
+    if (phase !== 'DATING_NO_LOVE') return undefined;
+
+    const timerId = window.setTimeout(() => setPhase('SELF_RESPECT_EXIT'), 5000);
+    return () => window.clearTimeout(timerId);
+  }, [phase, signals]);
 
   const transitionTo = (nextPhase) => {
     if (ALLOWED_TRANSITIONS[phase].includes(nextPhase)) setPhase(nextPhase);
@@ -64,6 +72,9 @@ export function SituationshipAnalyzer() {
       <button type="button" disabled={phase === 'SELF_RESPECT_EXIT'} onClick={() => addSignal('THEM', 1, 50)}>
         Log their effort
       </button>
+      <output role="status" aria-live="polite">
+        {isRedFlag ? 'Red flag: effort is not reciprocal.' : 'Effort is balanced.'}
+      </output>
       <p>My score: {myScore}</p>
       <p>Their score: {theirScore}</p>
       <ul aria-label="Effort signal log">
