@@ -46,3 +46,8 @@
     animation: none;
   }
 }
+
+.matchCard h3,
+.matchCard p {
+  margin-block: 0.5rem;
+}
