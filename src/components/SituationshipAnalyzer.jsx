@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { calculateEffortScore } from './situationshipScore.js';
 
 const ALLOWED_TRANSITIONS = {
   STRANGERS: ['DATING_NO_LOVE', 'SELF_RESPECT_EXIT'],
@@ -7,11 +8,7 @@ const ALLOWED_TRANSITIONS = {
   SELF_RESPECT_EXIT: [],
 };
 
-export function calculateEffortScore(signals, actor) {
-  return signals
-    .filter((signal) => signal.actor === actor)
-    .reduce((total, signal) => total + signal.steps * signal.multiplier, 0);
-}
+
 
 export function SituationshipAnalyzer() {
   const [signals, setSignals] = useState([]);

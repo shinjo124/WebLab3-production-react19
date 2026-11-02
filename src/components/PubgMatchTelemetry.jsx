@@ -11,21 +11,34 @@ const SQUADS = [
 export function PubgMatchTelemetry() {
   const [squadId, setSquadId] = useState('te');
   const [retryTick, setRetryTick] = useState(0);
-  const [view, setView] = useState({ status: 'IDLE', data: null, error: null });
+  const [view, setView] = useState({ status: 'IDLE', squadId: null, data: null, error: null });
+  const activeView = view.status === 'IDLE' || view.squadId !== squadId
+    ? { status: 'LOADING', data: null, error: null }
+    : view;
 
   useEffect(() => {
     const controller = new AbortController();
-    setView({ status: 'LOADING', data: null, error: null });
 
     fetchKraftonPubgTelemetry(squadId, { signal: controller.signal })
-      .then((data) => setView({ status: 'SUCCESS', data, error: null }))
+      .then((data) => setView({ status: 'SUCCESS', squadId, data, error: null }))
       .catch((error) => {
         if (error.name === 'AbortError') return;
-        setView({ status: 'ERROR', data: null, error: error.message });
+        setView({ status: 'ERROR', squadId, data: null, error: error.message });
       });
 
     return () => controller.abort();
   }, [squadId, retryTick]);
+
+  const selectSquad = (nextSquadId) => {
+    if (nextSquadId === squadId) return;
+    setView({ status: 'LOADING', squadId: nextSquadId, data: null, error: null });
+    setSquadId(nextSquadId);
+  };
+
+  const retry = () => {
+    setView({ status: 'LOADING', squadId, data: null, error: null });
+    setRetryTick((tick) => tick + 1);
+  };
 
   return (
     <section className={styles.telemetry} aria-label="PUBG Vietnam match telemetry">
@@ -35,36 +48,33 @@ export function PubgMatchTelemetry() {
             key={squad.id}
             type="button"
             aria-pressed={squadId === squad.id}
-            onClick={() => setSquadId(squad.id)}
+            onClick={() => selectSquad(squad.id)}
           >
             {squad.name}
           </button>
         ))}
       </nav>
 
-      {view.status === 'IDLE' && <p>Select a squad to load telemetry.</p>}
-      {view.status === 'LOADING' && (
+      {activeView.status === 'LOADING' && (
         <section className={styles.skeleton} aria-busy="true" aria-label="Loading match telemetry">
           <span className={styles.skeletonLine} />
           <span className={styles.skeletonLine} />
           <span className={styles.skeletonLine} />
         </section>
       )}
-      {view.status === 'ERROR' && (
+      {activeView.status === 'ERROR' && (
         <section role="alert">
-          <p>Telemetry unavailable: {view.error}</p>
-          <button type="button" onClick={() => setRetryTick((tick) => tick + 1)}>
-            Reconnect satellite
-          </button>
+          <p>Telemetry unavailable: {activeView.error}</p>
+          <button type="button" onClick={retry}>Reconnect satellite</button>
         </section>
       )}
-      {view.status === 'SUCCESS' && (
+      {activeView.status === 'SUCCESS' && (
         <article className={styles.matchCard} aria-live="polite">
-          <h3>{view.data.name}</h3>
-          <p>{view.data.map} · {view.data.phase}</p>
-          <p>{view.data.alive} alive · {view.data.kills} kills</p>
-          <p>WWCD chance: {view.data.wwcdProb}</p>
-          <p>{view.data.status}</p>
+          <h3>{activeView.data.name}</h3>
+          <p>{activeView.data.map} · {activeView.data.phase}</p>
+          <p>{activeView.data.alive} alive · {activeView.data.kills} kills</p>
+          <p>WWCD chance: {activeView.data.wwcdProb}</p>
+          <p>{activeView.data.status}</p>
         </article>
       )}
     </section>

@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useId, useState } from 'react';
 import { SkillBadge } from './SkillBadge.jsx';
 import styles from './DeveloperCard.module.css';
 
@@ -12,6 +12,7 @@ export function DeveloperCard({
     { id: 'javascript', name: 'JavaScript', level: 'Advanced' },
   ],
 }) {
+  const titleId = useId();
   const [avatarFailed, setAvatarFailed] = useState(false);
   const initials = fullName
     .trim()
@@ -22,7 +23,7 @@ export function DeveloperCard({
     .toUpperCase();
 
   return (
-    <article className={styles.card} aria-labelledby="developer-card-title">
+    <article className={styles.card} aria-labelledby={titleId}>
       <header className={styles.header}>
         {avatarFailed ? (
           <span className={styles.initials} aria-label={`${fullName} initials`}>{initials}</span>
@@ -37,7 +38,7 @@ export function DeveloperCard({
           />
         )}
         <hgroup className={styles.identity}>
-          <h2 id="developer-card-title">{fullName}</h2>
+          <h2 id={titleId}>{fullName}</h2>
           <p>{role}</p>
         </hgroup>
       </header>
