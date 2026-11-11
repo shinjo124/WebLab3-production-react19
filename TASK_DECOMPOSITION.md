@@ -36,4 +36,3 @@ The homework folders and starter files are scaffolded. Their assignment behavior
 - [x] Record three AI-generated defects, fixes, and evidence in `AI_FAILURE_AUDIT.md`.
 - [x] Verify telemetry under DevTools Slow 3G at 375px: skeleton appears, retry works, request reaches success, and no console errors occur.
 - [x] Accessibility/responsive check at 375px: all inputs labeled, no duplicate IDs, and no horizontal overflow.
-- [ ] User completes the 3-minute live defense with AI tools closed.
