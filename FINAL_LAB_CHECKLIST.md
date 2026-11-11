@@ -17,10 +17,9 @@
 
 - [x] Four-phase state machine, immutable signal log, derived scores/red flag, and cleaned-up five-second timer.
 
-## Submission and defense
+## Submission
 
 - [x] `project-rules.md`, `TASK_DECOMPOSITION.md`, and `AI_FAILURE_AUDIT.md`.
 - [x] Three AI-generated bugs documented with detection, fixes, and verification.
-- [ ] Complete the 3-minute live refactoring defense with AI tools closed (user-performed).
 - [x] Production build and lint pass.
 - [x] Accessibility check at 375px: all inputs labeled, no duplicate IDs, no browser console errors, and no horizontal overflow.
