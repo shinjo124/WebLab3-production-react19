@@ -10,11 +10,19 @@ const CRATES = [
 ];
 
 const SQUADS = [
-  { id: 'expendables', name: 'The Expendables', wwcd: 3, placementPts: 130, killPts: 54 },
-  { id: 'genius', name: 'Genius Esports', wwcd: 2, placementPts: 150, killPts: 48 },
-  { id: 'cerberus', name: 'Cerberus Esports', wwcd: 2, placementPts: 150, killPts: 62 },
-  { id: 'team-flash', name: 'Team Flash', wwcd: 1, placementPts: 110, killPts: 70 },
+  { id: 'te', name: 'The Expendables', wwcd: 3, placementPts: 130, killPts: 54 },
+  { id: 'ces', name: 'Cerberus Esports', wwcd: 2, placementPts: 150, killPts: 62 },
+  { id: 'ge', name: 'Roy Esports', wwcd: 2, placementPts: 150, killPts: 48 },
+  { id: 'agg', name: 'AGG', wwcd: 1, placementPts: 110, killPts: 70 },
 ];
+
+const DROP_DURATION_MS = 60_000;
+
+function mockArenaFetch(url, options) {
+  return JSON.parse(options.body).claimId.endsWith(':recon')
+    ? mockConflictFetch(url, options)
+    : Promise.resolve(new Response(null, { status: 200 }));
+}
 
 const formatPrice = new Intl.NumberFormat('vi-VN', {
   style: 'currency',
@@ -31,14 +39,29 @@ function formatCountdown(milliseconds) {
 
 export function KraftonPubgVnArena() {
   const playerId = useId();
+  const filterId = useId();
+  const sortId = useId();
   const [playerTag, setPlayerTag] = useState('');
+  const [squadFilter, setSquadFilter] = useState('');
+  const [sortBy, setSortBy] = useState('wwcd');
   const [message, setMessage] = useState('Enter your player tag to claim a crate.');
-  const [dropTarget] = useState(() => Date.now() + 5000);
-  const { remainingMs, isLive } = usePubgAirdropTimer(dropTarget, 0);
-  const { stock, pendingClaimIds, claim } = useOptimisticClaim(4, mockConflictFetch);
-  const leaderboard = SQUADS.toSorted((a, b) =>
-    b.wwcd - a.wwcd || b.placementPts - a.placementPts || b.killPts - a.killPts,
-  );
+  const [dropTarget] = useState(() => Date.now() + 30_000);
+  const { remainingMs: untilExpiryMs, isLive: isExpired } = usePubgAirdropTimer(dropTarget + DROP_DURATION_MS, 0);
+  const warmupMs = Math.max(0, untilExpiryMs - DROP_DURATION_MS);
+  const { stock, pendingClaimIds, claim } = useOptimisticClaim(4, mockArenaFetch);
+  const phase = warmupMs > 0
+    ? 'WARMUP'
+    : isExpired
+      ? 'EXPIRED'
+      : stock === 0
+        ? 'LOOTED_OUT'
+        : 'AIRDROP_LIVE';
+  const leaderboard = SQUADS
+    .filter((squad) => squad.name.toLowerCase().includes(squadFilter.trim().toLowerCase()))
+    .toSorted((a, b) => b[sortBy] - a[sortBy]
+      || b.wwcd - a.wwcd
+      || b.placementPts - a.placementPts
+      || b.killPts - a.killPts);
 
   const claimCrate = async (crate) => {
     const claimId = playerTag.trim() + ':' + crate.id;
@@ -57,7 +80,8 @@ export function KraftonPubgVnArena() {
     <section className={styles.arena} aria-label="KRAFTON PUBG VN Arena">
       <section className={styles.dropStatus} aria-labelledby="airdrop-status-title">
         <h2 id="airdrop-status-title">Airdrop countdown</h2>
-        <p aria-live="polite">{isLive ? 'Airdrop is live' : 'Drop opens in ' + formatCountdown(remainingMs)}</p>
+        <p aria-live="polite">{phase === 'WARMUP' ? 'Drop opens in ' + formatCountdown(warmupMs) : phase.replaceAll('_', ' ')}</p>
+        <p>Phase: <strong>{phase}</strong></p>
         <p>Crates remaining: <strong>{stock}</strong></p>
       </section>
 
@@ -80,7 +104,7 @@ export function KraftonPubgVnArena() {
                   <p>{formatPrice.format(crate.price)}</p>
                   <button
                     type="button"
-                    disabled={!isLive || !playerTag.trim() || stock < 1 || pendingClaimIds.has(claimId)}
+                    disabled={phase !== 'AIRDROP_LIVE' || !playerTag.trim() || stock < 1 || pendingClaimIds.has(claimId)}
                     onClick={() => claimCrate(crate)}
                   >
                     {pendingClaimIds.has(claimId) ? 'Claiming…' : 'Claim ' + crate.name}
@@ -95,6 +119,16 @@ export function KraftonPubgVnArena() {
 
       <section aria-labelledby="leaderboard-title">
         <h2 id="leaderboard-title">Squad leaderboard</h2>
+        <div className={styles.leaderboardControls}>
+          <label htmlFor={filterId}>Filter squads</label>
+          <input id={filterId} value={squadFilter} onChange={(event) => setSquadFilter(event.target.value)} />
+          <label htmlFor={sortId}>Sort by</label>
+          <select id={sortId} value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
+            <option value="wwcd">WWCD</option>
+            <option value="placementPts">Placement points</option>
+            <option value="killPts">Kill points</option>
+          </select>
+        </div>
         <ol className={styles.leaderboard}>
           {leaderboard.map((squad, index) => (
             <li key={squad.id}>

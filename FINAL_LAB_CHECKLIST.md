@@ -20,6 +20,8 @@
 ## Submission
 
 - [x] `project-rules.md`, `TASK_DECOMPOSITION.md`, and `AI_FAILURE_AUDIT.md`.
-- [x] Three AI-generated bugs documented with detection, fixes, and verification.
-- [x] Production build and lint pass.
-- [x] Accessibility check at 375px: all inputs labeled, no duplicate IDs, no browser console errors, and no horizontal overflow.
+- [x] Five AI-generated bugs documented with detection, fixes, and verification.
+- [x] Production build passes after the latest changes.
+- [x] Lint passes after the latest changes.
+- [ ] Updated homework layout and controls verified at 375px with no horizontal overflow.
+- [ ] Arena sort/filter controls and all four drop phases verified in the browser.

@@ -21,20 +21,17 @@
 
 ## Homework scope
 
-The homework folders and starter files are scaffolded. Their assignment behavior is not implemented yet; keep this distinction clear in future updates.
-
-- [ ] HW1 Drum Machine: Production Studio Drum Kit with seven pads; use `e.code` mappings (`KeyW`–`KeyL`), ignore repeat and text-input events, clean up keyboard listeners, and provide an accessible hit log and visual level meter.
-  - Manual check: disabled hook and typing in an input trigger no callback; holding a mapped key triggers once; unmount calls `removeEventListener`.
-- [ ] HW2 Piano: generate A0–C8, eight-voice FIFO synth, sequence recording/replay, and memoized keys.
-- [ ] HW3 PUBG VN Arena: anti-drift timer, optimistic claim with 409 rollback, leaderboard/filter, and VND formatting.
+- HW1 Drum Machine: seven pads, `e.code` keyboard hook, repeat/input guards, cleanup, live hit log, and meter are implemented. Manual keyboard-hook checks remain unverified.
+- HW2 Piano: generated A0–C8 keys, eight-voice FIFO synth, recording/replay, and memoized keys are implemented; prior 375px, voice-steal, render-isolation, and unmount checks passed. The piano JSX wrappers now use semantic sections with no `<div>`.
+- HW3 PUBG VN Arena: anti-drift timer, optimistic 409 rollback, VND crates, four-squad leaderboard, sort/filter controls, and four drop phases are implemented. Prior 409 rollback and duplicate-claim checks passed; the newly changed sort/filter, phases, and 375px layout still need browser verification.
 
 
 ## Remaining verification
 
-- [x] `npm run lint`
-- [x] `npm run build`
-- [x] 375px browser check: viewport/document widths match; all inputs labeled; no duplicate IDs or browser errors.
+- [x] `npm run lint` after the latest homework changes
+- [x] `npm run build` after the latest homework changes
+- [x] In-class exercise 375px browser checks: viewport/document widths matched; inputs were labeled; no duplicate IDs or browser errors.
 - [x] Verify telemetry loading and success card heights match at 220px.
-- [x] Record three AI-generated defects, fixes, and evidence in `AI_FAILURE_AUDIT.md`.
+- [x] Record five AI-generated defects, fixing commits, and evidence in `AI_FAILURE_AUDIT.md`.
 - [x] Verify telemetry under DevTools Slow 3G at 375px: skeleton appears, retry works, request reaches success, and no console errors occur.
-- [x] Accessibility/responsive check at 375px: all inputs labeled, no duplicate IDs, and no horizontal overflow.
+- [ ] Accessibility/responsive check at 375px after the latest homework changes: all inputs labeled, no duplicate IDs, and no horizontal overflow.

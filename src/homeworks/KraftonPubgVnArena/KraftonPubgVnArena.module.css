@@ -24,6 +24,30 @@
   font: inherit;
 }
 
+.leaderboardControls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-block-end: 0.75rem;
+}
+
+.leaderboardControls input,
+.leaderboardControls select {
+  box-sizing: border-box;
+  min-height: 2.75rem;
+  max-width: 100%;
+  padding-inline: 0.65rem;
+  border: 1px solid #64748b;
+  border-radius: 0.4rem;
+  font: inherit;
+}
+
+.leaderboardControls input {
+  width: min(100%, 14rem);
+  margin: 0;
+}
+
 .arena input:focus-visible,
 .arena button:focus-visible {
   outline: 3px solid #0284c7;
@@ -94,6 +118,8 @@
 }
 
 .squad li span {
+  min-height: 2.2em;
+  line-height: 1.1;
   color: #475569;
   font-size: 0.8rem;
 }

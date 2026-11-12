@@ -159,7 +159,7 @@ export function GrandPiano88() {
   return (
     <section className={styles.piano} aria-labelledby="piano-title">
       <h2 id="piano-title">88-Key Piano</h2>
-      <div className={styles.controls}>
+      <section className={styles.controls} aria-label="Recording controls">
         <button type="button" aria-pressed={isRecording} disabled={isPlaying} onClick={toggleRecording}>
           {isRecording ? 'Stop recording' : 'Record'}
         </button>
@@ -172,9 +172,9 @@ export function GrandPiano88() {
         <button type="button" disabled={!sequence.length || isRecording || isPlaying} onClick={replay}>Replay</button>
         <button type="button" disabled={!isPlaying} onClick={stopPlayback}>Stop</button>
         <output aria-live="polite">{isRecording ? 'Recording' : `${sequence.length} notes recorded`}</output>
-      </div>
-      <div className={styles.scrollArea} role="group" aria-label="Piano keys, A0 through C8">
-        <div className={styles.keyboard}>
+      </section>
+      <section className={styles.scrollArea} role="group" aria-label="Piano keys, A0 through C8">
+        <section className={styles.keyboard} role="group" aria-label="Piano keyboard">
           {KEYS.map((key) => (
             <PianoKey
               key={key.midi}
@@ -184,8 +184,8 @@ export function GrandPiano88() {
               onNoteOff={noteOff}
             />
           ))}
-        </div>
-      </div>
+        </section>
+      </section>
     </section>
   );
 }
