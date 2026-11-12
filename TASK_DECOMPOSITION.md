@@ -21,9 +21,9 @@
 
 ## Homework scope
 
-- HW1 Drum Machine: seven pads, `e.code` keyboard hook, repeat/input guards, cleanup, live hit log, and meter are implemented. Manual keyboard-hook checks remain unverified.
+- HW1 Drum Machine: seven pads, `e.code` keyboard hook, repeat/input guards, cleanup, live hit log, and meter are implemented. At 375px, all seven physical key mappings, pad sizes, visible focus, and unmount console cleanup passed; repeat, disabled, and input-target guards were confirmed in source but not exercised in the browser.
 - HW2 Piano: generated A0–C8 keys, eight-voice FIFO synth, recording/replay, and memoized keys are implemented; prior 375px, voice-steal, render-isolation, and unmount checks passed. The piano JSX wrappers now use semantic sections with no `<div>`.
-- HW3 PUBG VN Arena: anti-drift timer, optimistic 409 rollback, VND crates, four-squad leaderboard, sort/filter controls, and four drop phases are implemented. Prior 409 rollback and duplicate-claim checks passed; the newly changed sort/filter, phases, and 375px layout still need browser verification.
+- HW3 PUBG VN Arena: anti-drift timer, optimistic 409 rollback, VND crates, four-squad leaderboard, sort/filter controls, and four drop phases are implemented. 409 rollback and duplicate-claim checks passed; sort/filter controls and warmup, live, looted-out, and expired phases were verified in the browser at 375px with no horizontal overflow.
 
 
 ## Remaining verification
@@ -34,4 +34,5 @@
 - [x] Verify telemetry loading and success card heights match at 220px.
 - [x] Record five AI-generated defects, fixing commits, and evidence in `AI_FAILURE_AUDIT.md`.
 - [x] Verify telemetry under DevTools Slow 3G at 375px: skeleton appears, retry works, request reaches success, and no console errors occur.
-- [ ] Accessibility/responsive check at 375px after the latest homework changes: all inputs labeled, no duplicate IDs, and no horizontal overflow.
+- [x] Accessibility/responsive check at 375px after the latest homework changes: all inputs labeled, no duplicate IDs, and no horizontal overflow.
+- [x] HW1 keyboard hook runtime guards: disabled state produced no callback; an enabled `KeyW` produced one callback; a `repeat: true` keydown and typing in an input produced no additional callbacks. Tested with an isolated temporary React fixture and removed it afterward.

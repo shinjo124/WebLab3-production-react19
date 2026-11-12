@@ -8,7 +8,7 @@
 - **Detection:** At a 375px browser viewport, Playwright measured the skeleton at 220px and the result card at 229.4375px.
 - **Fix:** Reduced the result card heading and paragraph margins so its minimum height stays 220px.
 - **Verification:** Both measured 220px after the fix; viewport and document widths were both 375px. See `lab3-mobile-375-success.png` in the task outputs.
-- **Fix commit:** `1046ca2`
+- **Fix commit:** `1046ca2a26ed3936941f2889b1dd3d92518ea571`
 
 ## Bug 02: Telemetry entered loading from inside the effect
 
@@ -18,7 +18,7 @@
 - **Detection:** Oxlint reported `react(set-state-in-effect)` at the loading update.
 - **Fix:** Mark loading in the squad selection and retry handlers; derive the loading view while the selected squad and result do not match.
 - **Verification:** Lint is clean; the 375px browser check showed no console errors.
-- **Fix commit:** `fcec1fa`
+- **Fix commit:** `fcec1faac71a8ce492cf8de2f51fb4d61ffac6c4`
 
 ## Bug 03: Developer card used a fixed heading ID
 
@@ -28,7 +28,7 @@
 - **Detection:** Code audit found the fixed ID in the reusable component.
 - **Fix:** Generate the heading ID with React `useId()`.
 - **Verification:** Browser DOM audit found no duplicate IDs in the rendered app; lint and build pass.
-- **Fix commit:** `fcec1fa`
+- **Fix commit:** `fcec1faac71a8ce492cf8de2f51fb4d61ffac6c4`
 
 ## Bug 04: Arena player-tag input could exceed the mobile content width
 
@@ -38,7 +38,7 @@
 - **Detection:** The 375px arena check exposed the input width extending beyond its content box.
 - **Fix:** Apply `box-sizing: border-box` to the input and cap its width to the available space.
 - **Verification:** The arena was checked at 375px with matching viewport and document widths.
-- **Fix commit:** `21376c3`
+- **Fix commit:** `21376c3555e513bcdd2f239475c08b5a0559497c`
 
 ## Bug 05: Optimistic crate claim did not restore stock after HTTP 409
 
@@ -48,4 +48,4 @@
 - **Detection:** The mocked 409 claim flow was exercised in the browser.
 - **Fix:** Restore the stock count when the response is 409 (and on other failed responses).
 - **Verification:** A mocked 409 visibly restored stock; duplicate clicks shared one in-flight claim.
-- **Fix commit:** `21376c3`
+- **Fix commit:** `21376c3555e513bcdd2f239475c08b5a0559497c`
