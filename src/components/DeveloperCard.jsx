@@ -3,9 +3,9 @@ import { SkillBadge } from './SkillBadge.jsx';
 import styles from './DeveloperCard.module.css';
 
 export function DeveloperCard({
-  fullName = 'Tran Vinh Khiem',
+  fullName = 'Cao Phan Lam',
   role = 'Software Engineer',
-  avatarUrl = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=240',
+  avatarUrl = 'https://www.istockphoto.com/photos/anonymous-avatar',
   metrics = { commits: 0, projects: 0, a11yScore: 100 },
   skills = [
     { id: 'react', name: 'React 19', level: 'Core' },

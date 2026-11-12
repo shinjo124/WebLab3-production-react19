@@ -1,0 +1,40 @@
+.key {
+  position: relative;
+  display: flex;
+  width: 2.5rem;
+  height: 10rem;
+  flex: 0 0 2.5rem;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0.5rem 0.125rem;
+  border: 1px solid #0f172a;
+  border-radius: 0 0 0.3rem 0.3rem;
+  font: 0.65rem ui-monospace, monospace;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.white {
+  z-index: 0;
+  background: #fff;
+  color: #1e293b;
+}
+
+.black {
+  z-index: 1;
+  height: 6rem;
+  margin-inline: -0.5rem;
+  background: #111827;
+  color: #f8fafc;
+}
+
+.pressed {
+  background: #38bdf8;
+  color: #082f49;
+}
+
+.key:focus-visible {
+  z-index: 2;
+  outline: 3px solid #f97316;
+  outline-offset: 2px;
+}

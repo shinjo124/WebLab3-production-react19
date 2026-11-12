@@ -1,0 +1,56 @@
+.piano {
+  margin-block: 1rem;
+  padding: 1rem;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background: #1e293b;
+}
+
+.piano h2 {
+  margin: 0 0 1rem;
+  color: #f8fafc;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  color: #f8fafc;
+}
+
+.controls button,
+.controls select {
+  min-height: 2.5rem;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid #64748b;
+  border-radius: 0.4rem;
+  background: #0f172a;
+  color: inherit;
+  font: inherit;
+}
+
+.controls button:focus-visible,
+.controls select:focus-visible {
+  outline: 3px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+.controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.scrollArea {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.keyboard {
+  display: flex;
+  width: max-content;
+  padding: 0.25rem;
+  background: #0f172a;
+}

@@ -1,0 +1,94 @@
+.machine {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 42rem;
+  margin: 1rem auto;
+  padding: clamp(1rem, 4vw, 1.5rem);
+  border: 1px solid #334155;
+  border-radius: 1rem;
+  background: #111827;
+  color: #f8fafc;
+}
+
+.machine h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.25rem, 5vw, 1.75rem);
+}
+
+.pads {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.625rem;
+}
+
+.pad {
+  display: grid;
+  min-height: 5rem;
+  align-content: center;
+  justify-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.25rem;
+  border: 1px solid #64748b;
+  border-radius: 0.75rem;
+  background: #1e293b;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.pad:focus-visible {
+  outline: 3px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+.padActive {
+  background: #0e7490;
+  transform: translateY(2px);
+}
+
+.pad kbd {
+  color: #bae6fd;
+  font: 600 0.8rem ui-monospace, monospace;
+}
+
+.meterLabel {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.meter {
+  width: 100%;
+  height: 1rem;
+  accent-color: #22c55e;
+}
+
+.decibelValue {
+  display: block;
+  color: #86efac;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.hitLog {
+  display: flex;
+  min-height: 3.5rem;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-content: flex-start;
+  margin-top: 1rem;
+  color: #cbd5e1;
+}
+
+.hitLog span {
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: #334155;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 375px) {
+  .pads {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -23,9 +23,11 @@
 
 The homework folders and starter files are scaffolded. Their assignment behavior is not implemented yet; keep this distinction clear in future updates.
 
-- [ ] HW1 Drum Machine: `e.code` controls, repeat/focus guards, listener cleanup, hit log, and accessible pads.
+- [ ] HW1 Drum Machine: Production Studio Drum Kit with seven pads; use `e.code` mappings (`KeyW`–`KeyL`), ignore repeat and text-input events, clean up keyboard listeners, and provide an accessible hit log and visual level meter.
+  - Manual check: disabled hook and typing in an input trigger no callback; holding a mapped key triggers once; unmount calls `removeEventListener`.
 - [ ] HW2 Piano: generate A0–C8, eight-voice FIFO synth, sequence recording/replay, and memoized keys.
 - [ ] HW3 PUBG VN Arena: anti-drift timer, optimistic claim with 409 rollback, leaderboard/filter, and VND formatting.
+
 
 ## Remaining verification
 
